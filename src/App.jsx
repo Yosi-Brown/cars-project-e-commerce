@@ -1,0 +1,45 @@
+import React from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+  Outlet,
+} from "react-router-dom";
+// import ProductCard from "./components/ProductCard";
+// import ProductPage from "./components/ProductPage";
+// import ProductReviews from "./components/ProductReviews";
+// import ProductsProvider from "./context/CartContextProduct.jsx";
+import './App.css';
+import Navbar from "./section/Navbar.jsx";
+import AllProducts from "./components/products/AllProducts.jsx";
+import Products from "./components/pages/publicPages/Products.jsx";
+
+function Root() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+}
+
+
+function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route path="/allProducts" element={<Products />} />
+        {/* <Route path="/page" element={<ProductPage />} /> */}
+        {/* <Route path="/card" element={<ProductCard />} /> */}
+        {/* <Route path="/reviews" element={<ProductReviews />} /> */}
+      </Route>
+    )
+  );
+
+  return (
+    <RouterProvider router={router} />
+  );
+}
+
+export default App;
