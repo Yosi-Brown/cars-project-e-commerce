@@ -23,7 +23,7 @@ function useFetch(url) {
   }
   useEffect(() => {
     getRequest();
-  }, [sendGetRequest])
+  }, [sendGetRequest,url])
 
   return [data, isLoading, isError]
 };
