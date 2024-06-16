@@ -1,50 +1,38 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-// import { AuthContext } from '../../contexts/AuthContext';
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSunny } from "react-icons/io5";
+import { BsCart2 } from "react-icons/bs";
+import Cart from '../components/cart/Cart';
 
 function Navbar() {
-  // const { logOut } = useContext(AuthContext);
   const [darkMode, setDarkMode] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle('dark');
-};
+  };
 
   const menuItems = (
     <>
       <li><Link to="/allProducts">Products</Link></li>
-      {/* <li><Link to="/orders">Orders</Link></li>
-      <li><Link to="/users">Users</Link></li> */}
-
-<li>
+      <li>
         <details>
           <summary>Categories</summary>
-          <ul className="p-2 z-10">
+          <ul className="p-2 z-10 dark:bg-gray-600">
             <li><Link to="/submenu1">cars</Link></li>
             <li><Link to="/submenu2">motorcycles</Link></li>
             <li><Link to="/submenu2">trucks</Link></li>
           </ul>
         </details>
-        {/* <details>
-          <summary>Categories</summary>
-          <ul className="p-2 z-10">
-            <li><Link to="/categories/cars">cars</Link></li>
-            <li><Link to="/categories/motorcycles">motorcycles</Link></li>
-            <li><Link to="/categories/trucks">trucks</Link></li>
-          </ul>
-        </details> */}
-      </li> 
-       <li><Link to="/add-product">add product</Link></li>
+      </li>
+      <li><Link to="/add-product">add product</Link></li>
     </>
   );
 
   return (
-    // <div className={`navbar bg-base-100  ${darkMode ? 'dark' : ''}`}>
-    <nav className="navbar  bg-yellow-300 dark:bg-fuchsia-600 ">
-    {/* // <div className="dark: "> */}
+    <nav className="navbar bg-yellow-300 dark:bg-fuchsia-600 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -64,12 +52,15 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500" >Log out</button>
-        <button className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>{darkMode ? <IoSunny /> : <MdOutlineDarkMode />
-
-}</button>
-        
+        <button className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">Log out</button>
+        <button onClick={() => setCartOpen(true)} className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">
+          <BsCart2 />
+        </button>
+        <button className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>
+          {darkMode ? <IoSunny /> : <MdOutlineDarkMode />}
+        </button>
       </div>
+      {cartOpen && <Cart setCartOpen={setCartOpen} />}
     </nav>
   );
 }
