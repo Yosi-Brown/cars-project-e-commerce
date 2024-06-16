@@ -1,33 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSunny } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import Cart from '../components/cart/Cart';
+import axios from 'axios';
+
+
+const url = import.meta.env.VITE_URL;
+
 
 function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [categories, setCategories] = useState([])
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle('dark');
   };
 
+  const getCategories = async () => {
+    const { data } = await axios.get(`${url}/categories/getall`, { withCredentials: true })
+    if (data.success){
+      setCategories(data.categories)
+      console.log(categories)
+    }
+  }
+
+  useEffect(() => {
+    getCategories()
+  },[])
+
   const menuItems = (
     <>
-      <li><Link to="/allProducts">Products</Link></li>
+      <li>
+        <Link to="/allProducts">Products</Link></li>
       <li>
         <details>
           <summary>Categories</summary>
+          {/* <summary onClick={getCategories}>Categories</summary> */}
           <ul className="p-2 z-10 dark:bg-gray-600">
-            <li><Link to="/submenu1">cars</Link></li>
-            <li><Link to="/submenu2">motorcycles</Link></li>
-            <li><Link to="/submenu2">trucks</Link></li>
+            {categories?.map((category) => (
+              <div key={category._id}>
+              <li><Link to={`/category/${category._id}`}>{category.name}</Link></li>
+              </div>
+            ))}
+            {/* <li><Link to="/submenu2">motorcycles</Link></li> */}
+            {/* <li><Link to="/submenu2">trucks</Link></li> */}
           </ul>
         </details>
       </li>
-      <li><Link to="/add-product">add product</Link></li>
+      {/* <li><Link to="/add-product">add product</Link></li> */}
     </>
   );
 
