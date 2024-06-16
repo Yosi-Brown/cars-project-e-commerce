@@ -40,21 +40,21 @@ function Products() {
       {isError && <div>{isError}</div>}
       {data && (
         <>
-          <input
+          <input 
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="mb-4 p-2 border border-gray-300 rounded"
+            className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
           />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="mb-4 p-2 border border-gray-300 rounded"
+            className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
           >
-            <option value="">Sort By</option>
-            <option value="company">Company</option>
-            <option value="price">Price</option>
+            <option value="" class="dark:text-gray-300">Sort By</option>
+            <option value="company" class="dark:text-gray-500">Company</option>
+            <option value="price" class="dark:text-gray-500">Price</option>
           </select>
           <AllProducts products={currentProducts} isLoading={isLoading} />
           <Pagination

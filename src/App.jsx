@@ -14,6 +14,8 @@ import './App.css';
 import Navbar from "./section/Navbar.jsx";
 import AllProducts from "./components/products/AllProducts.jsx";
 import Products from "./components/pages/publicPages/Products.jsx";
+import Cart from "./components/cart/Cart.jsx";
+
 
 function Root() {
   return (
@@ -30,6 +32,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route path="/allProducts" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path="/page" element={<ProductPage />} /> */}
         {/* <Route path="/card" element={<ProductCard />} /> */}
         {/* <Route path="/reviews" element={<ProductReviews />} /> */}
