@@ -49,6 +49,12 @@ function CartProvider({ children }) {
     updateCart(updatedCart);
   };
 
+  // פונקציה למחיקת כל הפריטים מהעגלה
+  const clearCart = () => {
+    setCart([]); 
+    localStorage.removeItem('cart'); 
+  };
+
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -61,7 +67,8 @@ function CartProvider({ children }) {
     addToCart,
     increaseQuantity,
     decreaseQuantity,
-    removeFromCart
+    removeFromCart,
+    clearCart, 
   };
 
   return (
