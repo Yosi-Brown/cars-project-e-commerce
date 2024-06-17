@@ -24,7 +24,7 @@ function Navbar() {
     const { data } = await axios.get(`${url}/categories/getall`, { withCredentials: true })
     if (data.success){
       setCategories(data.categories)
-      console.log(categories)
+      // console.log(categories)
     }
   }
 

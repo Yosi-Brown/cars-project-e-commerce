@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import Loading from '../../loading/Loading';
-// import ProductTable from '../../product/productTable/ProductTable';
 import Pagination from '../../common/Pagination';
 import AllProducts from '../../products/AllProducts';
 import { useParams } from 'react-router-dom';
@@ -11,14 +10,14 @@ const url = import.meta.env.VITE_URL;
 
 function Products() {
   const { categoryId } = useParams();
-  console.log(categoryId);
+  // console.log(categoryId);
   const fetchUrl = categoryId ? `${url}/categories/getByCategory/${categoryId}` : `${url}/products/getall`;
   const [data, isLoading, isError] = useFetch(fetchUrl);
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(8);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
-  console.log(data)
+  // console.log(data)
 
   const filteredData = data?.products.filter((product) =>
     product.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
