@@ -5,6 +5,7 @@ import {
   RouterProvider,
   Route,
   Outlet,
+  // useParams,
 } from "react-router-dom";
 // import ProductCard from "./components/ProductCard";
 // import ProductPage from "./components/ProductPage";
@@ -15,7 +16,6 @@ import Navbar from "./section/Navbar.jsx";
 import AllProducts from "./components/products/AllProducts.jsx";
 import Products from "./components/pages/publicPages/Products.jsx";
 import Cart from "./components/cart/Cart.jsx";
-
 
 function Root() {
   return (
@@ -28,6 +28,7 @@ function Root() {
 
 
 function App() {
+  // let {categoryId} = useParams()
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
