@@ -16,12 +16,16 @@ import Navbar from "./section/Navbar.jsx";
 import AllProducts from "./components/products/AllProducts.jsx";
 import Products from "./components/pages/publicPages/Products.jsx";
 import Cart from "./components/cart/Cart.jsx";
+import OrderConfirmation from "./components/order/OrderConfirmation.jsx";
+import Footer from "./section/Footer.jsx";
+
 
 function Root() {
   return (
     <>
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 }
@@ -35,6 +39,7 @@ function App() {
         <Route path="/allProducts" element={<Products />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryId" element={<Products />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
         {/* <Route path="/page" element={<ProductPage />} /> */}
         {/* <Route path="/card" element={<ProductCard />} /> */}
         {/* <Route path="/reviews" element={<ProductReviews />} /> */}
