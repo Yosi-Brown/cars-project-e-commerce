@@ -7,7 +7,9 @@ function ViewProduct({ product, isOpen, onClose }) {
   const [isImageScaled, setIsImageScaled] = useState(false);
   const { addToCart } = useContext(CartContext);
 
+
   if (!isOpen) return null;
+
 
   const handleOpenPicture = () => {
     setIsOpenPicture(true);
@@ -50,44 +52,60 @@ function ViewProduct({ product, isOpen, onClose }) {
                 </div>
               )}
             </div>
-            <div className="flex -mx-1 md:-mx-2 mb-4">
-              <div className="w-1/2 px-1 md:px-2">
-                <button
-                  className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700"
-                  onClick={() => addToCart(product)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-              <div className="w-1/2 px-1 md:px-2">
-                <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
-                  Add to Wishlist
-                </button>
-              </div>
+            <div className="flex space-x-2 mb-4">
+              <button className="flex-1 bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition duration-300 ease-in-out" onClick={() => addToCart(product)}>Add to Cart</button>
+              {/* <button className="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 ease-in-out">Add to Wishlist</button> */}
             </div>
           </div>
-          <div className="md:flex-1 px-2 md:px-4">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{product.company} {product.model}</h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-              ante justo. Integer euismod libero id mauris malesuada tincidunt.
-            </p>
-            <div className="flex mb-4">
-            <div className="mr-4">
-  <span className="font-bold text-lg md:text-xl text-gray-700 dark:text-gray-300">Price:</span>
-  <span className="text-lg md:text-xl text-gray-600 dark:text-gray-300">${product.price}</span>
-</div>
+          <div className="md:flex-1 p-6 space-y-4">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white"> {product.company} {product.model}</h1>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div><span className="font-bold">Company:</span> {product.company}</div>
+              <div><span className="font-bold">Model:</span> {product.model}</div>
+              <div><span className="font-bold">Engine Displacement (cc):</span> {product.engine_displacement_cc}</div>
+              <div><span className="font-bold">Horsepower:</span> {product.horsepower}</div>
+              <div><span className="font-bold">Seats:</span> {product.seats}</div>
+              <div><span className="font-bold">Engine Type:</span> {product.engine_type}</div>
+              <div><span className="font-bold">Car Type:</span> {product.category.name}</div>
+              <div><span className="font-bold">Year:</span> {product.year}</div>
+                {/* <div className="mr-4">
+                  <span className="font-bold text-lg md:text-xl text-gray-700 dark:text-gray-300">Price:</span>
+                  <span className="text-lg md:text-xl text-gray-600 dark:text-gray-300">${product.price}</span>
+                </div> */}
+              <div className="flex mb-4">
 
-              
-            </div>
-            <div className="mb-4">
-              <span className="font-bold text-gray-700 dark:text-gray-300">Select Color:</span>
-              <div className="flex items-center mt-2">
-                <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-red-500 dark:bg-red-700 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-700 mr-2"></button>
-                <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700 mr-2"></button>
+
               </div>
+
+
+              {/* <div>
+                <span className="font-bold">Colors:</span>
+                <div className="flex justify-center items-center mt-2 space-x-2">
+                  <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200"></button>
+                  <button className="w-6 h-6 rounded-full bg-red-500 dark:bg-red-700"></button>
+                  <button className="w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-700"></button>
+                  <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700"></button>
+                </div>
+              </div> */}
+              <div>
+                {/* <span className="font-bold">Image Link:</span>
+                <a href="https://example.com" className="text-blue-500 dark:text-blue-400 inline-block mt-2 hover:underline">https://example.com</a> */}
+              </div>
+              {/* <div>
+                <span className="font-bold">Product Description:</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nihil nam nesciunt, sint at rerum eum molestias blanditiis ut aperiam quidem dicta atque temporibus quasi soluta cum. Doloribus, optio iusto.
+                </p>
+              </div> */}
+              {/* <div className="mb-4">
+                <span className="font-bold text-gray-700 dark:text-gray-300">Company:</span>
+                <span className="text-gray-600 dark:text-gray-300 ml-1">{product.company}</span>
+              </div>
+              <div className="mb-4">
+                <span className="font-bold text-gray-700 dark:text-gray-300">Model:</span>
+                <span className="text-gray-600 dark:text-gray-300 ml-1">{product.model}</span>
+              </div> */}
+
             </div>
             
             <div>
