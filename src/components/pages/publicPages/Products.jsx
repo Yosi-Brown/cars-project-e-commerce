@@ -14,7 +14,7 @@ function Products() {
   const category = categoryId
   const urlSpecific = category ? `${url}/categories/getByCategory/${category}` : `${url}/products/getall`
   const [data, isLoading, isError] = useFetch(urlSpecific);
-  console.log(urlSpecific);
+  // console.log(urlSpecific);
   // const [data, isLoading, isError] = useFetch(`${url}/products/getall`);
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(8);

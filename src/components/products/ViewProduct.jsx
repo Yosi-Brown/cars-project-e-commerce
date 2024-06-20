@@ -8,6 +8,7 @@ function ViewProduct({ product }) {
   const [isImageScaled, setIsImageScaled] = useState(false);
   const { cart, addToCart } = useContext(CartContext);
 
+  console.log(product);
 
   const handleOpenPicture = () => {
     setIsOpenPicture(true);
@@ -53,13 +54,25 @@ function ViewProduct({ product }) {
           <div className="md:flex-1 p-6 space-y-4">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white"> {product.company} {product.model}</h1>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div><span className="font-bold">Company:</span> {product.company}</div>
+              <div><span className="font-bold">Model:</span> {product.model}</div>
               <div><span className="font-bold">Engine Displacement (cc):</span> {product.engine_displacement_cc}</div>
               <div><span className="font-bold">Horsepower:</span> {product.horsepower}</div>
               <div><span className="font-bold">Seats:</span> {product.seats}</div>
               <div><span className="font-bold">Engine Type:</span> {product.engine_type}</div>
-              <div><span className="font-bold">Car Type:</span> {product.car_type}</div>
+              <div><span className="font-bold">Car Type:</span> {product.category.name}</div>
               <div><span className="font-bold">Year:</span> {product.year}</div>
-              <div>
+                {/* <div className="mr-4">
+                  <span className="font-bold text-lg md:text-xl text-gray-700 dark:text-gray-300">Price:</span>
+                  <span className="text-lg md:text-xl text-gray-600 dark:text-gray-300">${product.price}</span>
+                </div> */}
+              <div className="flex mb-4">
+
+
+              </div>
+
+
+              {/* <div>
                 <span className="font-bold">Colors:</span>
                 <div className="flex justify-center items-center mt-2 space-x-2">
                   <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200"></button>
@@ -67,10 +80,10 @@ function ViewProduct({ product }) {
                   <button className="w-6 h-6 rounded-full bg-blue-500 dark:bg-blue-700"></button>
                   <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700"></button>
                 </div>
-              </div>
+              </div> */}
               <div>
-                <span className="font-bold">Image Link:</span>
-                <a href="https://example.com" className="text-blue-500 dark:text-blue-400 inline-block mt-2 hover:underline">https://example.com</a>
+                {/* <span className="font-bold">Image Link:</span>
+                <a href="https://example.com" className="text-blue-500 dark:text-blue-400 inline-block mt-2 hover:underline">https://example.com</a> */}
               </div>
               {/* <div>
                 <span className="font-bold">Product Description:</span>
@@ -78,14 +91,14 @@ function ViewProduct({ product }) {
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nihil nam nesciunt, sint at rerum eum molestias blanditiis ut aperiam quidem dicta atque temporibus quasi soluta cum. Doloribus, optio iusto.
                 </p>
               </div> */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <span className="font-bold text-gray-700 dark:text-gray-300">Company:</span>
                 <span className="text-gray-600 dark:text-gray-300 ml-1">{product.company}</span>
               </div>
               <div className="mb-4">
                 <span className="font-bold text-gray-700 dark:text-gray-300">Model:</span>
                 <span className="text-gray-600 dark:text-gray-300 ml-1">{product.model}</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
