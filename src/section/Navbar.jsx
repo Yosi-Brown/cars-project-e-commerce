@@ -45,15 +45,15 @@ function Navbar() {
         <Link to="/allProducts">Products</Link>
       </li>
       <li>
-        <select 
-          onChange={handleCategoryChange} 
+        <select
+          onChange={handleCategoryChange}
           className="p-2 z-10 bg-yellow-300 dark:bg-fuchsia-600 dark:text-white"
           value=""
         >
           <option value="" disabled hidden>Select Category</option>
           {categories?.map((category) => (
-            <option 
-              key={category._id} 
+            <option
+              key={category._id}
               value={category._id}
               className='bg-yellow-300 dark:bg-fuchsia-600 dark:text-white'
             >
@@ -88,7 +88,7 @@ function Navbar() {
         </div>
         <div className="navbar-end gap-1">
           <button onClick={() => setCartOpen(true)} className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">
-            <BsCart2 className='dark:text-white'/>
+            <BsCart2 className='dark:text-white' />
           </button>
           <button className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>
             {darkMode ? <IoSunny /> : <MdOutlineDarkMode />}
