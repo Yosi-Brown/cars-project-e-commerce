@@ -21,12 +21,17 @@ function GlobalProvider({ children }) {
 
   const [currentUser, setCurrentUser] = useState({})
   const [sendGetRequest, setSendGetRequest] = useState(false)
+  const [categoryId, setCategoryId] = useState(null)
+
+
 
   const value = {
     currentUser, 
     setCurrentUser: updateCurrentUser,
     setSendGetRequest,
-    sendGetRequest
+    sendGetRequest,
+    categoryId,
+    setCategoryId
   }
 
   return (

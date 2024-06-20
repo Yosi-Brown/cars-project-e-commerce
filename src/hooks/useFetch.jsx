@@ -6,7 +6,7 @@ function useFetch(url) {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(null)
-  const { sendGetRequest } = useContext(GlobalContext)
+  const { sendGetRequest,categoryId } = useContext(GlobalContext)
 
   async function getRequest() {
     try {
@@ -23,7 +23,7 @@ function useFetch(url) {
   }
   useEffect(() => {
     getRequest();
-  }, [sendGetRequest,url])
+  }, [sendGetRequest,categoryId])
 
   return [data, isLoading, isError]
 };

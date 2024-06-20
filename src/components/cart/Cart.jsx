@@ -41,8 +41,9 @@ const Cart = ({ setCartOpen }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10">
-      <div className="bg-white w-96 h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-400">
+
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10 ">
+      <div className="bg-white w-96 h-auto max-h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-400">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-medium text-gray-900">Shopping cart</h2>
           <button onClick={closeCart} className="btn btn-sm btn-circle btn-outline">

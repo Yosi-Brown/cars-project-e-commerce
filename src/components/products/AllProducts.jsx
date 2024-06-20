@@ -16,8 +16,8 @@ function AllProducts({ products, isLoading }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[80%] mx-auto justify-center pt-5">
       {products.map((product) => (
         <div
-          key={product._id}
-          className="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+        key={product._id}
+        className="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105 hover:shadow-lg"
         >
           <div className="p-4 rounded-t-lg overflow-hidden">
             <img
@@ -27,7 +27,7 @@ function AllProducts({ products, isLoading }) {
                 'https://via.placeholder.com/150?text=Image+Not+Available'
               }
               alt={`${product.model} image`}
-            />
+              />
           </div>
           <div className="px-4 pb-4">
             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">
@@ -52,7 +52,7 @@ function AllProducts({ products, isLoading }) {
                 <button
                   className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition duration-300"
                   onClick={() => addToCart(product)}
-                >
+                  >
                   Add to cart
                 </button>
                 <button
