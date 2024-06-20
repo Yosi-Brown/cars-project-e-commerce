@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import GlobalModal from '../modals/GlobalModal';
 import ViewProduct from './ViewProduct';
 import { CartContext } from '../../contexts/CartContext';
 
@@ -69,9 +68,11 @@ function AllProducts({ products, isLoading }) {
         </div>
       ))}
       {isModalOpen && (
-        <GlobalModal isOpen={isModalOpen} onClose={() => handleModal(false)}>
-          <ViewProduct product={singleProduct} />
-        </GlobalModal>
+        <ViewProduct
+          product={singleProduct}
+          isOpen={isModalOpen}
+          onClose={() => handleModal(false)}
+        />
       )}
     </div>
   );
