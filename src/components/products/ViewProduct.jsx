@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { CartContext } from '../../contexts/CartContext';
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 function ViewProduct({ product, isOpen, onClose }) {
   const [isHovering, setIsHovering] = useState(false);
@@ -30,7 +30,8 @@ function ViewProduct({ product, isOpen, onClose }) {
         </button>
         <div className="flex flex-col md:flex-row -mx-2 md:-mx-4">
           <div className="md:flex-1 px-2 md:px-4">
-            <div className="h-56 md:h-[300px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4 overflow-hidden relative"
+            <div
+              className="h-56 md:h-[300px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4 overflow-hidden relative"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
@@ -53,35 +54,51 @@ function ViewProduct({ product, isOpen, onClose }) {
             <div className="flex -mx-1 md:-mx-2 mb-4">
               <div className="w-1/2 px-1 md:px-2">
                 <button
-                  className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700"
+                  className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-gray-800 dark:hover:bg-gray-700"
                   onClick={() => addToCart(product)}
                 >
                   Add to Cart
                 </button>
               </div>
               <div className="w-1/2 px-1 md:px-2">
-                <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
+                <button className="w-full  text-white dark:text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 py-2 px-4 rounded-full font-semibold">
                   Add to Wishlist
                 </button>
               </div>
             </div>
           </div>
-          <div className="md:flex-1 px-2 md:px-4">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{product.company} {product.model}</h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-              ante justo. Integer euismod libero id mauris malesuada tincidunt.
-            </p>
-            <div className="flex mb-4">
-            <div className="mr-4">
-  <span className="font-bold text-lg md:text-xl text-gray-700 dark:text-gray-300">Price:</span>
-  <span className="text-lg md:text-xl text-gray-600 dark:text-gray-300">${product.price}</span>
-</div>
 
-              
+          <div className="md:flex-1 p-6 space-y-4">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white"> {product.company} {product.model}</h1>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div><span className="font-bold">Company:</span> {product.company}</div>
+              <div><span className="font-bold">Model:</span> {product.model}</div>
+              <div><span className="font-bold">Engine Displacement (cc):</span> {product.engine_displacement_cc}</div>
+              <div><span className="font-bold">Horsepower:</span> {product.horsepower}</div>
+              <div><span className="font-bold">Seats:</span> {product.seats}</div>
+              <div><span className="font-bold">Engine Type:</span> {product.engine_type}</div>
+              <div><span className="font-bold">Car Type:</span> {product.category.name}</div>
+              <div><span className="font-bold">Year:</span> {product.year}</div>
+{/* </div> */}
+          {/* <div className="md:flex-1 px-2 md:px-4">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+              {product.company} {product.model}
+            </h2>
+            
+            <div className="flex mb-4">
+              <div className="mr-4">
+                <span className="font-bold text-lg md:text-xl text-gray-700 dark:text-gray-300">
+                  Price:
+                </span>
+                <span className="text-lg md:text-xl text-gray-600 dark:text-gray-300">
+                  ${product.price}
+                </span>
+              </div>
             </div>
             <div className="mb-4">
-              <span className="font-bold text-gray-700 dark:text-gray-300">Select Color:</span>
+              <span className="font-bold text-gray-700 dark:text-gray-300">
+                Select Color:
+              </span>
               <div className="flex items-center mt-2">
                 <button className="w-6 h-6 rounded-full bg-gray-800 dark:bg-gray-200 mr-2"></button>
                 <button className="w-6 h-6 rounded-full bg-red-500 dark:bg-red-700 mr-2"></button>
@@ -89,21 +106,24 @@ function ViewProduct({ product, isOpen, onClose }) {
                 <button className="w-6 h-6 rounded-full bg-yellow-500 dark:bg-yellow-700 mr-2"></button>
               </div>
             </div>
-            
+
             <div>
-              <span className="font-bold text-gray-700 dark:text-gray-300">Product Description:</span>
+              <span className="font-bold text-gray-700 dark:text-gray-300">
+                Product Description:
+              </span>
               <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                sed ante justo. Integer euismod libero id mauris malesuada tincidunt. 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
+                ante justo. Integer euismod libero id mauris malesuada
+                tincidunt.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
         {isOpenPicture && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 transition-opacity duration-500 ease-in-out">
             <div
               className={`relative w-full h-full flex items-center justify-center transition-transform duration-500 ease-in-out 
-                ${isImageScaled ? 'scale-100' : 'scale-75'}`}
+                ${isImageScaled ? "scale-100" : "scale-75"}`}
             >
               <img
                 className="w-full h-full object-contain"
@@ -121,6 +141,10 @@ function ViewProduct({ product, isOpen, onClose }) {
         )}
       </div>
     </div>
+    </div>
+    </div>
+
+    
   );
 }
 
