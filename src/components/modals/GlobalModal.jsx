@@ -7,7 +7,7 @@ function GlobalModal({ children, isOpen, onClose }) {
 
   return (
     <div className="z-50 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
-      <div className="relative bg-white rounded shadow-lg w-80vw max-h-80vh mx-auto dark:bg-gray-900  ">
+      <div className="relative bg-white rounded shadow-lg w-80vw max-h-80vh mx-auto dark:bg-gray-900   ">
         <button
           className="absolute top-0 right-0 mt-7 mr-4 text-white bg-gray-800 dark:bg-gray-600 rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-500 transition duration-300 ease-in-out"
           onClick={() => onClose(false)}>
