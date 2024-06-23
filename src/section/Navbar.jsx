@@ -94,7 +94,7 @@ function Navbar() {
               {menuItems}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">CARS4U</Link>
+          <Link to="/homePage" className="btn btn-ghost text-xl">CARS4U</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { BsX } from "react-icons/bs";
 import { CartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,7 @@ const Cart = ({ setCartOpen }) => {
     removeFromCart,
     clearCart,
   } = useContext(CartContext);
-  const {isAuth, setIsAuth } = useContext(AuthContext)
+  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -82,7 +81,7 @@ const Cart = ({ setCartOpen }) => {
                       <h3>
                         {item.company} {item.model}
                       </h3>
-                      <p className="ml-4">${item.price * item.quantity}</p>
+                      <p className="ml-4">${(item.price * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
                     </div>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
@@ -124,22 +123,13 @@ const Cart = ({ setCartOpen }) => {
         <div className="border-t border-gray-200 px-4 py-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Subtotal</p>
-            <p>${total}</p>
+            <p>${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
           </div>
           <p className="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
           </p>
-          {/* <div className="mt-6">
-            <a
-              href="#"
-              className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-            >
-              Checkout
-            </a>
-          </div> */}
-
           <div className="mt-6">
-          <button
+            <button
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
               onClick={() => {
                 if (isAuth) {
@@ -154,7 +144,6 @@ const Cart = ({ setCartOpen }) => {
               Checkout
             </button>
           </div>
-
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
               or{" "}

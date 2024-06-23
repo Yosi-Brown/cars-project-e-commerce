@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
 
 const OrderConfirmation = () => {
-  const { cart, increaseQuantity, decreaseQuantity,isOrderPage, setIsOrderPage } = useContext(CartContext);
+  const { cart, increaseQuantity, decreaseQuantity, isOrderPage, setIsOrderPage } = useContext(CartContext);
   const navigate = useNavigate();
+  
 
   const [localCart, setLocalCart] = useState(cart);
 
   const total = localCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleProceedToShipping = () => {
-    setIsOrderPage(true)
+    setIsOrderPage(true);
     navigate("/profile");
-
   };
 
   const handleIncreaseQuantity = (productId) => {
@@ -59,7 +59,7 @@ const OrderConfirmation = () => {
                   <h3>
                     {item.company} {item.model}
                   </h3>
-                  <p className="ml-4">${item.price * item.quantity}</p>
+                  <p className="ml-4">${(item.price * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
                 </div>
                 <p className="mt-1 text-sm text-gray-500">{item.description}</p>
               </div>
@@ -83,9 +83,9 @@ const OrderConfirmation = () => {
         ))}
       </ul>
       <div className="border-t border-gray-200 mt-6 pt-4">
-        <div className="flex justify-between text-base font-medium text-gray-900">
-          <p>Total</p>
-          <p>${total.toFixed(2)}</p>
+        <div className="flex justify-between text-xl font-semibold text-gray-900 ">
+          <p>Total :</p>
+          <p>${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
         </div>
       </div>
       <div className="mt-6 flex justify-between">
