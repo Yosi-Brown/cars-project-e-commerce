@@ -5,12 +5,9 @@ import {
   RouterProvider,
   Route,
   Outlet,
+  
   // useParams,
 } from "react-router-dom";
-// import ProductCard from "./components/ProductCard";
-// import ProductPage from "./components/ProductPage";
-// import ProductReviews from "./components/ProductReviews";
-// import ProductsProvider from "./context/CartContextProduct.jsx";
 import './App.css';
 import Navbar from "./section/Navbar.jsx";
 import AllProducts from "./components/products/AllProducts.jsx";
@@ -18,6 +15,12 @@ import Products from "./components/pages/publicPages/Products.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import OrderConfirmation from "./components/order/OrderConfirmation.jsx";
 import Footer from "./section/Footer.jsx";
+import Profile from "./components/profile/Profile.jsx";
+
+import Form from "../src/components/login/logIn/Form.jsx"
+import SignUp from "../src/components/login/registerUser/RegisterForm.jsx"
+import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
+import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 
 
 function Root() {
@@ -42,6 +45,12 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryId" element={<Products />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/login" element={<Form />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
+
         {/* <Route path="/page" element={<ProductPage />} /> */}
         {/* <Route path="/card" element={<ProductCard />} /> */}
         {/* <Route path="/reviews" element={<ProductReviews />} /> */}
