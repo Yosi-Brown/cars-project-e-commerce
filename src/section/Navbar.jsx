@@ -6,6 +6,10 @@ import { BsCart2 } from "react-icons/bs";
 import Cart from '../components/cart/Cart';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
+import { ImProfile } from "react-icons/im";
+import { AuthContext } from '../contexts/AuthContext';
+
+
 
 const url = import.meta.env.VITE_URL;
 
@@ -14,6 +18,8 @@ function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  const {isAuth, setIsAuth, logOut } = useContext(AuthContext)
+
 
   const navigate = useNavigate();
 
@@ -92,13 +98,20 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-end gap-1">
+        <button
+          className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500"
+          onClick={() => navigate('/profile')}>
+          <ImProfile />
+        </button>
           <button onClick={() => setCartOpen(true)} className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">
             <BsCart2 className='dark:text-white' />
           </button>
           <button className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>
             {darkMode ? <IoSunny /> : <MdOutlineDarkMode />}
           </button>
-          <button className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">Log out</button>
+          <button className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500" 
+          onClick={isAuth ? logOut : () => navigate('/login')}
+          >{isAuth ? "Log out" : "Login"}</button>
         </div>
         {cartOpen && <Cart setCartOpen={setCartOpen} />}
       </nav>
