@@ -29,8 +29,12 @@ function Navbar() {
     }
   };
 
-  const handleCategoryChange = (event) => {
-    const id = event.target.value;
+  const handleCategoryChange = (e) => {
+    const id = e.target.value;
+    // const selectedOption = e.target.selectedOptions[0];
+    // const id = selectedOption.getAttribute('_id');
+    // const name = selectedOption.getAttribute('');
+    // console.log(e.target.textContent);
     setCategoryId(id);
     navigate(`/category/${id}`);
   };
@@ -53,6 +57,7 @@ function Navbar() {
           <option value="" disabled hidden>Select Category</option>
           {categories?.map((category) => (
             <option
+              // name={category.name}
               key={category._id}
               value={category._id}
               className='bg-yellow-300 dark:bg-fuchsia-600 dark:text-white'
