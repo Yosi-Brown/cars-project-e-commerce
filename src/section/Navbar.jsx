@@ -24,6 +24,7 @@ function Navbar() {
   const {isOrderPage, setIsOrderPage } = useContext(CartContext);
 
 
+
   const navigate = useNavigate();
 
   const toggleDarkMode = () => {

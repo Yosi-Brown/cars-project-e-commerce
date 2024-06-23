@@ -5,19 +5,14 @@ import {
   RouterProvider,
   Route,
   Outlet,
-  Navigate,
-  
-  // useParams,
 } from "react-router-dom";
 import './App.css';
 import Navbar from "./section/Navbar.jsx";
-import AllProducts from "./components/products/AllProducts.jsx";
 import Products from "./components/pages/publicPages/Products.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import OrderConfirmation from "./components/order/OrderConfirmation.jsx";
 import Footer from "./section/Footer.jsx";
 import Profile from "./components/profile/Profile.jsx";
-
 import Form from "../src/components/login/logIn/Form.jsx"
 import SignUp from "../src/components/login/registerUser/RegisterForm.jsx"
 import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
@@ -53,18 +48,12 @@ function App() {
         <Route path="/login" element={<Form />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/changePassword" element={<ChangePassword />} />
-
-        {/* <Route path="/page" element={<ProductPage />} /> */}
-        {/* <Route path="/card" element={<ProductCard />} /> */}
-        {/* <Route path="/reviews" element={<ProductReviews />} /> */}
       </Route>
     )
   );
 
   return (
-    // <div className="min-h-screen">
-      <RouterProvider router={router} />
-    // </div>
+    <RouterProvider router={router} />
   );
 }
 

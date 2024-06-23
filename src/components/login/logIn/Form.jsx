@@ -7,8 +7,6 @@ import PasswordInput from './PasswordInput';
 import { AuthContext } from '../../../contexts/AuthContext';
 
 
-
-
 function Form() {
   const initialValues = {
     email: '',
@@ -18,9 +16,9 @@ function Form() {
   const { isAuth, login } = useContext(AuthContext);
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   if (isAuth) navigate("/dashboard")
-  // }, [isAuth])
+  useEffect(() => {
+    if (isAuth) navigate("/allProducts")
+  }, [isAuth])
 
   return (
     <Formik
