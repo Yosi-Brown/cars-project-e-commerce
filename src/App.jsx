@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -17,6 +17,7 @@ import Form from "../src/components/login/logIn/Form.jsx"
 import SignUp from "../src/components/login/registerUser/RegisterForm.jsx"
 import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
 import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
+import { AuthContext } from "./contexts/AuthContext.jsx";
 
 
 function Root() {
@@ -34,6 +35,7 @@ function Root() {
 
 function App() {
   // let {categoryId} = useParams()
+  const {isAuth} = useContext(AuthContext)
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
@@ -41,7 +43,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryId" element={<Products />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={isAuth ? <Profile /> : <Navigate to={"/login"}/>} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/login" element={<Form />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />

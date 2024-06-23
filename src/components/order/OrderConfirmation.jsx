@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
 
 const OrderConfirmation = () => {
-  const { cart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+  const { cart, increaseQuantity, decreaseQuantity,isOrderPage, setIsOrderPage } = useContext(CartContext);
   const navigate = useNavigate();
 
   const [localCart, setLocalCart] = useState(cart);
@@ -11,7 +11,9 @@ const OrderConfirmation = () => {
   const total = localCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleProceedToShipping = () => {
-    navigate("/shipping-details");
+    setIsOrderPage(true)
+    navigate("/profile");
+
   };
 
   const handleIncreaseQuantity = (productId) => {

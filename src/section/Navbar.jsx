@@ -8,6 +8,8 @@ import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { ImProfile } from "react-icons/im";
 import { AuthContext } from '../contexts/AuthContext';
+import { CartContext } from '../contexts/CartContext';
+
 
 
 
@@ -18,7 +20,9 @@ function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const {isAuth, setIsAuth, login, logOut } = useContext(AuthContext)
+  const {isAuth, setIsAuth, logOut } = useContext(AuthContext)
+  const {isOrderPage, setIsOrderPage } = useContext(CartContext);
+
 
 
   const navigate = useNavigate();
@@ -100,7 +104,7 @@ function Navbar() {
         <div className="navbar-end gap-1">
         <button
           className="btn dark:bg-gray-700 dark:text-white dark:border-gray-500"
-          onClick={() => navigate('/profile')}>
+          onClick={() => {setIsOrderPage(false),  navigate('/profile')}}>
           <ImProfile />
         </button>
           <button onClick={() => setCartOpen(true)} className="btn dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">

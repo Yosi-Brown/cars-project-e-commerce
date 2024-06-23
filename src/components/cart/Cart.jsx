@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+
 import { BsX } from "react-icons/bs";
 import { CartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Cart = ({ setCartOpen }) => {
   const {
@@ -11,6 +13,8 @@ const Cart = ({ setCartOpen }) => {
     removeFromCart,
     clearCart,
   } = useContext(CartContext);
+  const {isAuth, setIsAuth } = useContext(AuthContext)
+
   const navigate = useNavigate();
 
   const closeCart = () => {
@@ -135,11 +139,16 @@ const Cart = ({ setCartOpen }) => {
           </div> */}
 
           <div className="mt-6">
-            <button
+          <button
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
               onClick={() => {
-                navigate("/order-confirmation");
-                closeCart();
+                if (isAuth) {
+                  navigate("/order-confirmation");
+                  closeCart();
+                } else {
+                  navigate("/login");
+                  closeCart();
+                }
               }}
             >
               Checkout
