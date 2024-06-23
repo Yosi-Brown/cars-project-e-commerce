@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import Loading from '../../loading/Loading';
 import Pagination from '../../common/Pagination';
@@ -10,21 +10,13 @@ const url = import.meta.env.VITE_URL;
 
 function Products() {
   const { categoryId } = useParams()
-  // console.log('products',categoryId);
   const category = categoryId
   const urlSpecific = category ? `${url}/categories/getByCategory/${category}` : `${url}/products/getall`
   const [data, isLoading, isError] = useFetch(urlSpecific);
-  // console.log(urlSpecific);
-  // const [data, isLoading, isError] = useFetch(`${url}/products/getall`);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage] = useState(8);
+  const [productPerPage] = useState(6);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
-  // console.log(data)
-
-  // useEffect(()=>{
-
-  // },[categoryId])
 
 
   let filteredData = data?.products.filter((product) =>
@@ -53,6 +45,7 @@ function Products() {
 
       {data && (
         <>
+        <div className='pt-5 flex items-center justify-center gap-3'>
           <input
             type="text"
             placeholder="Search..."
@@ -65,11 +58,12 @@ function Products() {
             onChange={(e) => setSortBy(e.target.value)}
             className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
           >
-            <option value="" className="dark:text-gray-300">Sort By</option>
-            <option value="default" className="dark:text-gray-500">default</option>
-            <option value="company" className="dark:text-gray-500">Company</option>
-            <option value="price" className="dark:text-gray-500">Price</option>
+            <option value="" hidden className="dark:text-gray-300">Sort By</option>
+            <option value="default" className="dark:text-gray-300">default</option>
+            <option value="company" className="dark:text-gray-300">Company</option>
+            <option value="price" className="dark:text-gray-300">Price</option>
           </select>
+        </div>
           {isLoading && <Loading />}
           {isError && <div>{isError}</div>}
           <AllProducts products={currentProducts} isLoading={isLoading} />

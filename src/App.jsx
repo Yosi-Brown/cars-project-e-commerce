@@ -22,11 +22,13 @@ import Footer from "./section/Footer.jsx";
 
 function Root() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Outlet />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
@@ -48,7 +50,9 @@ function App() {
   );
 
   return (
-    <RouterProvider router={router} />
+    // <div className="min-h-screen">
+      <RouterProvider router={router} />
+    // </div>
   );
 }
 
