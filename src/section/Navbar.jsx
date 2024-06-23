@@ -18,7 +18,7 @@ function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const {isAuth, setIsAuth, logOut } = useContext(AuthContext)
+  const {isAuth, setIsAuth, login, logOut } = useContext(AuthContext)
 
 
   const navigate = useNavigate();

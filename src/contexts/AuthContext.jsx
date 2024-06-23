@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { toastFire } from "../utils/Toaster";
 import { GlobalContext } from "./GlobalContext";
-// import { useNavigate } from "react-router-dom";
 
 const url = import.meta.env.VITE_URL
 
@@ -10,7 +9,6 @@ export const AuthContext = createContext();
 
 
 function AuthProvider({ children }) {
-  // const navigate = useNavigate();
 
   
   const { currentUser, setCurrentUser } = useContext(GlobalContext)
@@ -41,8 +39,6 @@ function AuthProvider({ children }) {
         setCurrentUser(data.user);
         toastFire(true, data.message)
         setIsAuth(true)
-        // navigate("/allProducts")
-        // return true
       }
     } catch (error) {
       toastFire(false, error.response.data.error)
@@ -105,10 +101,10 @@ function AuthProvider({ children }) {
 
   }
 
-  // useEffect(() => {
-  //   authUser()
-  //   // console.log(isAuth)
-  // }, [])
+  useEffect(() => {
+    authUser()
+    // console.log(isAuth)
+  }, [])
 
   const value = {
     isAuth,
