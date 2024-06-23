@@ -7,6 +7,7 @@ export const CartContext = createContext();
 
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [isOrderPage, setIsOrderPage] = useState(false)
 
   // פונקציה לעדכון העגלה ולשמירה ב-local storage
   const updateCart = (newCart) => {
@@ -70,6 +71,8 @@ function CartProvider({ children }) {
     decreaseQuantity,
     removeFromCart,
     clearCart, 
+    isOrderPage,
+    setIsOrderPage,
   };
 
   return (
