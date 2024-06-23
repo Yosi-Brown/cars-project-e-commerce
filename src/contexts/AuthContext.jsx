@@ -95,6 +95,7 @@ function AuthProvider({ children }) {
           console.log('profile updated')
           setCurrentUser(data.user)
           setIsEditing(false)
+          return data.success
         }
       }
     } catch (error) {

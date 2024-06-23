@@ -6,25 +6,31 @@ import * as Yup from "yup";
 import axios from "axios";
 import Loading from '../loading/Loading'
 import ChangePassword from "../forgatPassword/ChangePassword";
+import { CartContext } from "../../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 // import ChangePassword from '../pages/publicPages/ChangePassword'
 // import { toastFire } from "../../utils/Toaster";
 
 const url = import.meta.env.VITE_URL;
 
-function Profile({ isOrderPage = false }) {
+function Profile() {
   const { currentUser, setCurrentUser, updateProfile, isEditing, setIsEditing } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const { isOrderPage, setIsOrderPage } = useContext(CartContext);
+  const navigate = useNavigate()
+  console.log("isOrderPage", isOrderPage)
+
   // const {isAuth, setIsAuth } = useContext(AuthContext)
   // console.log("isa", isAuth);
 
 
   const initialValues = {
-    firstName: currentUser.firstName || '',
-    lastName: currentUser.lastName || '',
-    email: currentUser.email || '',
-    phone: currentUser.phone || '',
-    address: currentUser.address || '',
+    firstName: currentUser ?.firstName || '',
+    lastName: currentUser ?.lastName || '',
+    email: currentUser ?.email || '',
+    phone: currentUser ?.phone || '',
+    address: currentUser ?.address || '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -34,6 +40,9 @@ function Profile({ isOrderPage = false }) {
     phone: isOrderPage ? Yup.string().matches(/^[0-9]+$/, 'Must be only digits').required('Required') : Yup.string(),
     address: isOrderPage ? Yup.string().required('Required') : Yup.string(),
   });
+
+  if (isOrderPage){setIsEditing(true)}
+  // else{setIsEditing(false)}
 
   const handleOpenEdit = (bool) => {
     setIsEditing(bool);
@@ -52,10 +61,16 @@ function Profile({ isOrderPage = false }) {
       toastFire(false, 'Please fill in all the fields.');
       return; // Stop further execution if fields are empty
     }
-    console.log(isEditing);
-    const req = await updateProfile(values)
-    if (req) {
+
+    const isSuccess = await updateProfile(values)
+    
+    if (isSuccess) {
+      if ( isOrderPage){
+        navigate("/allProducts")
+        
+      }
       setIsEditing(false);
+      setIsOrderPage(false)
     }
     // console.log(data);
   }
@@ -193,7 +208,7 @@ function Profile({ isOrderPage = false }) {
                                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
                                   type="submit" onClick={() => handleSubmit(values)}
                                 >
-                                  Save
+                                 {isOrderPage ? "save and continue" : "save"}
                                 </button>
                                 <button
                                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
