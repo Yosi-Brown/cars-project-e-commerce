@@ -14,7 +14,7 @@ function GlobalProvider({ children }) {
 
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
-    console.log(JSON.parse(savedUser));
+    // console.log(JSON.parse(savedUser));
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }

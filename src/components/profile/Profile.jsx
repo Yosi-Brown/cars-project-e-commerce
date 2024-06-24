@@ -34,6 +34,7 @@ function Profile() {
     address: isOrderPage ? Yup.string().required('Required') : Yup.string(),
   });
 
+
   if (isOrderPage) {
     setIsEditing(true);
   }
@@ -54,13 +55,17 @@ function Profile() {
 
     const isSuccess = await updateProfile(values);
     if (isSuccess) {
-      if (isOrderPage) {
-        navigate("/allProducts");
+      if ( isOrderPage){
+        navigate("/payment")
+        
+
+
       }
       setIsEditing(false);
       setIsOrderPage(false);
     }
   }
+
 
   const handleCancelClick = (resetForm) => {
     resetForm();
