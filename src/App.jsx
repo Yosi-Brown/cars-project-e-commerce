@@ -20,6 +20,8 @@ import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
 import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 import { AuthContext } from "./contexts/AuthContext.jsx";
 import Payment from "./components/payment/Payment.jsx";
+import HomePage from "./components/pages/publicPages/homePage/HomePage.jsx";
+
 
 
 function Root() {
@@ -41,6 +43,8 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
+
+        <Route path="/homePage" element={<HomePage />} />
         <Route path="/allProducts" element={<Products />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryId" element={<Products />} />

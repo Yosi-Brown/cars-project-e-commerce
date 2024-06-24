@@ -4,12 +4,10 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import Loading from '../loading/Loading'
+import Loading from '../loading/Loading';
 import ChangePassword from "../forgatPassword/ChangePassword";
 import { CartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
-// import ChangePassword from '../pages/publicPages/ChangePassword'
-// import { toastFire } from "../../utils/Toaster";
 
 const url = import.meta.env.VITE_URL;
 
@@ -17,20 +15,15 @@ function Profile() {
   const { currentUser, setCurrentUser, updateProfile, isEditing, setIsEditing } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const { isOrderPage, setIsOrderPage } = useContext(CartContext);
-  const navigate = useNavigate()
-  console.log("isOrderPage", isOrderPage)
-
-  // const {isAuth, setIsAuth } = useContext(AuthContext)
-  // console.log("isa", isAuth);
-
+  const { isOrderPage, setIsOrderPage, cart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const initialValues = {
-    firstName: currentUser ?.firstName || '',
-    lastName: currentUser ?.lastName || '',
-    email: currentUser ?.email || '',
-    phone: currentUser ?.phone || '',
-    address: currentUser ?.address || '',
+    firstName: currentUser?.firstName || '',
+    lastName: currentUser?.lastName || '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
+    address: currentUser?.address || '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -41,35 +34,35 @@ function Profile() {
     address: isOrderPage ? Yup.string().required('Required') : Yup.string(),
   });
 
-  if (isOrderPage){setIsEditing(true)}
+
+  if (isOrderPage) {
+    setIsEditing(true);
+  }
 
   const handleOpenEdit = (bool) => {
     setIsEditing(bool);
   };
-// console.log(currentUser._id);
-  const changePassword = (boll) => {
-    setShowChangePassword(boll)
-    if(showChangePassword){
-      return <ChangePassword profile={boll} />
-    }
+
+  const changePassword = (bool) => {
+    setShowChangePassword(bool);
   }
 
   const handleSubmit = async (values) => {
     const isFormComplete = Object.values(values).every(field => field.trim() !== '');
     if (isOrderPage && !isFormComplete) {
-      toastFire(false, 'Please fill in all the fields.');
-      return; // Stop further execution if fields are empty
+      return;
     }
 
-    const isSuccess = await updateProfile(values)
-    
+    const isSuccess = await updateProfile(values);
     if (isSuccess) {
       if ( isOrderPage){
         navigate("/payment")
         
+
+
       }
       setIsEditing(false);
-      setIsOrderPage(false)
+      setIsOrderPage(false);
     }
   }
 
@@ -78,7 +71,9 @@ function Profile() {
     resetForm();
     setIsEditing(false);
   };
- if(showChangePassword) return (<ChangePassword profile={true} onClos={() => setShowChangePassword(false)}/>)
+
+  if (showChangePassword) return (<ChangePassword profile={true} onClos={() => setShowChangePassword(false)} />);
+
   return isLoading ? (
     <Loading />
   ) : (
@@ -162,15 +157,19 @@ function Profile() {
                           />
                           <ErrorMessage name="address" component="div" className="text-red-500 text-xs mt-1" />
                         </div>
-                        <div className="md:col-span-2">
-                          <br></br>
-                          <button
-                            type="button"
-                            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 h-10 border mt-1 rounded px-4 w-full'
-                            onClick={() => changePassword(true)}
-                          >Change Password
-                          </button>
-                        </div>
+
+                        {!isOrderPage &&
+                          <div className="md:col-span-2">
+                            <br />
+                            <button
+                              type="button"
+                              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 h-10 border mt-1 rounded px-4 w-full"
+                              onClick={() => changePassword(true)}
+                            >
+                              Change Password
+                            </button>
+                          </div>
+                        }
 
                         <div className="md:col-span-5 text-right">
                           <div className="inline-flex items-end">
@@ -180,7 +179,7 @@ function Profile() {
                                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
                                   type="submit" onClick={() => handleSubmit(values)}
                                 >
-                                 {isOrderPage ? "save and continue" : "save"}
+                                  {isOrderPage ? "Save and Continue" : "Save"}
                                 </button>
                                 <button
                                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
@@ -201,6 +200,7 @@ function Profile() {
                             )}
                           </div>
                         </div>
+
                       </div>
                     </div>
                   </div>
