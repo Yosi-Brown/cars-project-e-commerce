@@ -42,7 +42,6 @@ function Profile() {
   });
 
   if (isOrderPage){setIsEditing(true)}
-  // else{setIsEditing(false)}
 
   const handleOpenEdit = (bool) => {
     setIsEditing(bool);
@@ -66,41 +65,14 @@ function Profile() {
     
     if (isSuccess) {
       if ( isOrderPage){
-        navigate("/allProducts")
+        navigate("/payment")
         
       }
       setIsEditing(false);
       setIsOrderPage(false)
     }
-    // console.log(data);
   }
 
-  // const handleSaveClick = async (values) => {
-  //   try {
-  //     const isFormComplete = Object.values(values).every(field => field.trim() !== '');
-
-  //     if (isOrderPage && !isFormComplete) {
-  //       alert('Please fill in all the fields.');
-  //       return; // Stop further execution if fields are empty
-  //     }
-
-  //     setIsLoading(true);
-
-  //     const { data } = await axios.put(`${url}/users/updateProfile/${currentUser._id}`, values, { withCredentials: true });
-
-  //     if (data.success) {
-  //       console.log("Data sent to server successfully");
-  //       setCurrentUser(data.user)
-
-  //     }
-
-  //     setIsEditing(false);
-  //   } catch (error) {
-  //     console.error('Error saving data:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const handleCancelClick = (resetForm) => {
     resetForm();
