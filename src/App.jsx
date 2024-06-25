@@ -20,6 +20,7 @@ import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
 import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 import { AuthContext } from "./contexts/AuthContext.jsx";
 import HomePage from "./components/pages/publicPages/homePage/HomePage.jsx";
+import Payment from "./components/payment/Payment.jsx";
 
 
 function Root() {
@@ -52,6 +53,8 @@ function App() {
         <Route path="/login" element={<Form />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/payment" element={<Payment />} />
+
       </Route>
     )
   );
