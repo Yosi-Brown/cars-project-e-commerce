@@ -21,6 +21,7 @@ import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 import { AuthContext } from "./contexts/AuthContext.jsx";
 import Payment from "./components/payment/Payment.jsx";
 import HomePage from "./components/pages/publicPages/homePage/HomePage.jsx";
+import Payment from "./components/payment/Payment.jsx";
 
 
 
