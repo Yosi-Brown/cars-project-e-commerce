@@ -57,10 +57,7 @@ function Profile() {
     if (isSuccess) {
       if ( isOrderPage){
         navigate("/payment")
-        
-
-
-      }
+              }
       setIsEditing(false);
       setIsOrderPage(false);
     }
@@ -90,7 +87,7 @@ function Profile() {
             >
               {({ resetForm, values }) => (
                 <Form>
-                  <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                  <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3 dark:bg-gray-500">
                     <div className="text-gray-600">
                       <p className="font-medium text-lg">Personal Details</p>
                       <p>Please ensure your details are correct.</p>
@@ -104,7 +101,7 @@ function Profile() {
                             type="text"
                             name="firstName"
                             id="firstName"
-                            className={`h-10 border mt-1 rounded px-4 w-full ${isEditing ? 'bg-yellow-100 border-yellow-500' : 'bg-gray-50'}`}
+                            className={`h-10 border mt-1 rounded px-4 w-full dark:text-white dark:bg-gray-400 ${isEditing ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50'}`}
                             readOnly={!isEditing}
                           />
                           <ErrorMessage name="firstName" component="div" className="text-red-500 text-xs mt-1" />
@@ -116,7 +113,7 @@ function Profile() {
                             type="text"
                             name="lastName"
                             id="lastName"
-                            className={`h-10 border mt-1 rounded px-4 w-full ${isEditing ? 'bg-yellow-100 border-yellow-500' : 'bg-gray-50'}`}
+                            className={`h-10 border mt-1 rounded px-4 w-full dark:text-white dark:bg-gray-400 ${isEditing ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50'}`}
                             readOnly={!isEditing}
                           />
                           <ErrorMessage name="lastName" component="div" className="text-red-500 text-xs mt-1" />
@@ -128,7 +125,7 @@ function Profile() {
                             type="text"
                             name="email"
                             id="email"
-                            className={`h-10 border mt-1 rounded px-4 w-full ${isEditing ? 'bg-yellow-100 border-yellow-500' : 'bg-gray-50'}`}
+                            className={`h-10 border mt-1 rounded px-4 w-full dark:text-white dark:bg-gray-400 ${isEditing ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50'}`}
                             readOnly={true}
                           />
                           <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
@@ -140,7 +137,7 @@ function Profile() {
                             type="text"
                             name="phone"
                             id="phone"
-                            className={`h-10 border mt-1 rounded px-4 w-full ${isEditing ? 'bg-yellow-100 border-yellow-500' : 'bg-gray-50'}`}
+                            className={`h-10 border mt-1 rounded px-4 w-full dark:text-white dark:bg-gray-400 ${isEditing ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50'}`}
                             readOnly={!isEditing}
                           />
                           <ErrorMessage name="phone" component="div" className="text-red-500 text-xs mt-1" />
@@ -152,7 +149,7 @@ function Profile() {
                             type="text"
                             name="address"
                             id="address"
-                            className={`h-10 border mt-1 rounded px-4 w-full ${isEditing ? 'bg-yellow-100 border-yellow-500' : 'bg-gray-50'}`}
+                            className={`h-10 border mt-1 rounded px-4 w-full dark:text-white dark:bg-gray-400 ${isEditing ? 'bg-yellow-50 border-yellow-500' : 'bg-gray-50'}`}
                             readOnly={!isEditing}
                           />
                           <ErrorMessage name="address" component="div" className="text-red-500 text-xs mt-1" />
