@@ -19,8 +19,10 @@ import SignUp from "../src/components/login/registerUser/RegisterForm.jsx"
 import ForgotPassword from "../src/components/forgatPassword/ForgotPassword.jsx"
 import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 import { AuthContext } from "./contexts/AuthContext.jsx";
+import Payment from "./components/payment/Payment.jsx";
 import HomePage from "./components/pages/publicPages/homePage/HomePage.jsx";
 import Payment from "./components/payment/Payment.jsx";
+
 
 
 function Root() {
