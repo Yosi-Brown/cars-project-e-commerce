@@ -74,13 +74,13 @@ function Profile() {
   return isLoading ? (
     <Loading />
   ) : (
-    <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-      <div className="container max-w-screen-lg mx-auto">
+    <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center dark:bg-gray-700 ">
+      <div className="container max-w-screen-lg mx-auto ">
         <div>
-          <h2 className="font-semibold text-xl text-gray-600">User Profile</h2>
-          <p className="text-gray-500 mb-6">Your personal details</p>
+          <h2 className="font-semibold text-xl text-gray-600 dark:text-white">User Profile</h2>
+          <p className="text-gray-500 mb-6 dark:text-white">Your personal details</p>
 
-          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 dark:bg-gray-500 ">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -89,8 +89,8 @@ function Profile() {
                 <Form>
                   <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3 dark:bg-gray-500">
                     <div className="text-gray-600">
-                      <p className="font-medium text-lg">Personal Details</p>
-                      <p>Please ensure your details are correct.</p>
+                      <p className="font-medium text-lg dark:text-white">Personal Details</p>
+                      <p className="dark:text-white">Please ensure your details are correct.</p>
                     </div>
 
                     <div className="lg:col-span-2">

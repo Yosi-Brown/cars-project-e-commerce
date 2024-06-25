@@ -19,6 +19,8 @@ function Navbar() {
   const [categories, setCategories] = useState([]);
   const { isAuth, logOut } = useContext(AuthContext);
   const { setIsOrderPage } = useContext(CartContext);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,28 +46,54 @@ function Navbar() {
     getCategories();
   }, []);
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   const menuItems = (
     <>
-      <li className= "dark:bg-fuchsia-600 dark:text-white rounded-md" onClick={() => setCategoryId(null)}>
-        <Link to="/allProducts">Products</Link>
-      </li>
       <li>
-        <select
-          onChange={handleCategoryChange}
-          className="p-2 bg-yellow-300 dark:bg-fuchsia-600 dark:text-white"
-          value=""
+        <Link
+          to="/allProducts"
+          className="block py-2 px-4 text-gray-900 bg-yellow-300 dark:bg-fuchsia-600 dark:text-white rounded-md  dark:hover:bg-fuchsia-700 text-center"
+          onClick={() => setCategoryId(null)}
         >
-          <option value="" disabled hidden>Select Category</option>
-          {categories?.map((category) => (
-            <option
-              key={category._id}
-              value={category._id}
-              className='bg-yellow-300 dark:bg-fuchsia-600 dark:text-white'
-            >
-              {category.name}
-            </option>
-          ))}
-        </select>
+          Products
+        </Link>
+      </li>
+      <li className="relative">
+        <button
+          id="dropdownNavbarLink"
+          onClick={toggleDropdown}
+          className="flex items-center justify-between w-full py-2 px-4 text-gray-900 bg-yellow-300 dark:bg-fuchsia-600 dark:text-white rounded-md  dark:hover:bg-fuchsia-700 text-center"
+        >
+          Categories
+          <svg className="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+          </svg>
+        </button>
+        <div
+          id="dropdownNavbar"
+          className={`z-10 ${dropdownOpen ? 'block' : 'hidden'} absolute top-full mt-2 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44  dark:bg-gray-700 dark:divide-gray-600`}
+        >
+          <ul className="py-2 text-sm  text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+            {categories.map((category) => (
+              <li key={category._id}>
+                <a
+                  href="#"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => { handleCategoryChange({ target: { value: category._id } }); }}
+                >
+                  {category.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </li>
     </>
   );
@@ -75,12 +103,12 @@ function Navbar() {
       <nav className="navbar bg-yellow-300 dark:bg-fuchsia-600 sticky top-0 z-50">
         <div className="navbar-start">
           <div className="dropdown">
-            <button tabIndex={0} className="btn btn-ghost lg:hidden">
+            <button tabIndex={0} className="btn btn-ghost lg:hidden" onClick={toggleMenu}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
             </button>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabIndex={0} className={`${menuOpen ? 'block' : 'hidden'} menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52`}>
               {menuItems}
             </ul>
           </div>
