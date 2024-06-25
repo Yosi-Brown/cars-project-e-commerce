@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { toastFire } from "../utils/Toaster";
 
 
 const url = import.meta.env.VITE_URL;
@@ -22,11 +23,13 @@ function CartProvider({ children }) {
     if (existingProduct) {
       updatedCart = cart.map(item =>
         item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+
       );
     } else {
       updatedCart = [...cart, { ...product, quantity: 1 }];
     }
     updateCart(updatedCart);
+    toastFire(true, "added to cart")
   };
 
   // פונקציה להגדלת הכמות של מוצר בעגלה

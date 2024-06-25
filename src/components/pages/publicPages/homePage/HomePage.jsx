@@ -119,14 +119,14 @@ function HomePage() {
 
   useEffect(() => {
     if (data && data.products) {
-      setImages([data.products[1], data.products[2], data.products[4]]);
+      setImages([data.products[22], data.products[23], data.products[15], data.products[13] , data.products[33]]);
     }
   }, [data]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-    }, 3000); // Change slide every 3 seconds
+    }, 5000); // Change slide every 3 seconds
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -162,10 +162,10 @@ function HomePage() {
             {images.map((product, index) => (
               <div
                 key={index}
-                className={`carousel-item relative w-full ${index === currentSlide ? 'block' : 'hidden'}`}
+                className={`carousel-item relative w-full h-56 md:h-[440px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4 overflow-hidden  ${index === currentSlide ? 'block' : 'hidden'}`}
               >
                 <button className="w-full" onClick={() => handleModal(true, product)}>
-                  <img src={product.image_link} className="w-full" alt={`Slide ${index + 1}`} />
+                  <img src={product.image_link} className="w-full rounded-xl h-25" alt={`Slide ${index + 1}`} />
                 </button>
                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                   <a

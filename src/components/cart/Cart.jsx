@@ -27,21 +27,21 @@ const Cart = ({ setCartOpen }) => {
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10">
         <div className="bg-white w-96 h-auto rounded-xl shadow-xl p-4 overflow-y-auto dark:bg-gray-400">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-medium text-gray-900">Shopping cart</h2>
+            <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
             <button
               onClick={closeCart}
-              className="btn btn-sm btn-circle btn-outline"
+              className="btn btn-sm btn-circle btn-outline dark:text-white"
             >
               <BsX />
             </button>
           </div>
-          <div className="mt-8 text-center text-gray-900">
+          <div className="mt-8 text-center text-gray-900 dark:text-white">
             <h1 className="text-2xl">Your cart is empty.</h1>
           </div>
-          <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+          <div className="mt-6 flex justify-center text-center text-sm text-gray-500 dark:text-gray-200">
             <button
               type="button"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
               onClick={closeCart}
             >
               Continue Shopping <span aria-hidden="true"> &rarr;</span>
@@ -54,12 +54,12 @@ const Cart = ({ setCartOpen }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10">
-      <div className="bg-white w-96 h-auto max-h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-400 rounded-xl">
+      <div className="bg-white w-96 h-auto max-h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-700 rounded-xl">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-medium text-gray-900">Shopping cart</h2>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
           <button
             onClick={closeCart}
-            className="btn btn-sm btn-circle btn-outline"
+            className="btn btn-sm btn-circle btn-outline dark:text-white"
           >
             <BsX />
           </button>
@@ -77,7 +77,7 @@ const Cart = ({ setCartOpen }) => {
                 </div>
                 <div className="ml-4 flex flex-1 flex-col">
                   <div>
-                    <div className="flex justify-between text-base font-medium text-gray-900">
+                    <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                       <h3>
                         {item.company} {item.model}
                       </h3>
@@ -88,21 +88,21 @@ const Cart = ({ setCartOpen }) => {
                     <div className="flex items-center">
                       <button
                         onClick={() => decreaseQuantity(item._id)}
-                        className="btn btn-sm btn-outline mr-2"
+                        className="btn btn-sm btn-outline mr-2 dark:text-white"
                       >
                         -
                       </button>
-                      <p className="text-gray-900">{item.quantity}</p>
+                      <p className="text-gray-900 dark:text-white">{item.quantity}</p>
                       <button
                         onClick={() => increaseQuantity(item._id)}
-                        className="btn btn-sm btn-outline ml-2"
+                        className="btn btn-sm btn-outline ml-2 dark:text-white"
                       >
                         +
                       </button>
                     </div>
                     <button
                       onClick={() => removeFromCart(item)}
-                      className="btn btn-sm btn-outline text-red-600"
+                      className="btn btn-sm btn-outline text-red-600 dark:text-red-400"
                     >
                       Remove
                     </button>
@@ -120,12 +120,12 @@ const Cart = ({ setCartOpen }) => {
             Remove All
           </button>
         </div>
-        <div className="border-t border-gray-200 px-4 py-6">
-          <div className="flex justify-between text-base font-medium text-gray-900">
+        <div className="border-t border-gray-200 px-4 py-6 dark:border-gray-600">
+          <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
             <p>Subtotal</p>
             <p>${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
           </div>
-          <p className="mt-0.5 text-sm text-gray-500">
+          <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-200">
             Shipping and taxes calculated at checkout.
           </p>
           <div className="mt-6 flex items-center justify-center">
@@ -144,12 +144,12 @@ const Cart = ({ setCartOpen }) => {
               Checkout
             </button>
           </div>
-          <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+          <div className="mt-6 flex justify-center text-center text-sm text-gray-500 dark:text-gray-200">
             <p>
               or{" "}
               <button
                 type="button"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+                className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
                 onClick={closeCart}
               >
                 Continue Shopping <span aria-hidden="true"> &rarr;</span>
