@@ -15,7 +15,6 @@ const url = import.meta.env.VITE_URL;
 function Navbar() {
   const { categoryId, setCategoryId } = useContext(GlobalContext);
   const [darkMode, setDarkMode] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const { isAuth, logOut } = useContext(AuthContext);
   const { setIsOrderPage } = useContext(CartContext);
@@ -23,7 +22,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
-  const menuRef = useRef()
+  const menuRef = useRef();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -41,7 +40,7 @@ function Navbar() {
     const id = e.target.value;
     setCategoryId(id);
     navigate(`/category/${id}`);
-    setDropdownOpen(false)
+    setDropdownOpen(false);
   };
 
   useEffect(() => {
@@ -59,16 +58,16 @@ function Navbar() {
   useEffect(() => {
     const handler = (e) => {
       if (!menuRef.current.contains(e.target)) {
-        setDropdownOpen(false)
+        setDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handler)
+    document.addEventListener('mousedown', handler);
 
     return () => {
-      document.removeEventListener('mousedown', handler)
-    }
-  })
+      document.removeEventListener('mousedown', handler);
+    };
+  });
 
   const menuItems = (
     <>
@@ -116,7 +115,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar bg-yellow-300 dark:bg-fuchsia-600 sticky top-0 z-50">
+      <nav className="navbar bg-yellow-300 dark:bg-fuchsia-600 fixed top-0 left-0 right-0 z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <button tabIndex={0} className="btn btn-ghost lg:hidden" onClick={toggleMenu}>
@@ -142,7 +141,7 @@ function Navbar() {
           >
             <ImProfile />
           </button>
-          <button onClick={() => setCartOpen(true)} className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">
+          <button onClick={() => navigate('cart')} className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500">
             <BsCart2 className='dark:text-white' />
           </button>
           <button className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>
@@ -154,7 +153,6 @@ function Navbar() {
             {isAuth ? "Log out" : "Login"}
           </button>
         </div>
-        {cartOpen && <Cart setCartOpen={setCartOpen} />}
       </nav>
     </>
   );

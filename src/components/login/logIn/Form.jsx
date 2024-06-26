@@ -17,7 +17,8 @@ function Form() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isAuth) navigate("/allProducts")
+    if (isAuth) 
+      window.history.back()
   }, [isAuth])
 
   return (
