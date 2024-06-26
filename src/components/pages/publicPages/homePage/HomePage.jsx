@@ -131,7 +131,7 @@ function HomePage() {
   }, [images.length]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center dark:bg-gray-600  justify-center min-h-screen">
       {/* Header */}
       <header className="w-full bg-gray-800 p-4 text-white flex justify-between items-center">
         <div className="text-lg font-bold">CARS4U</div>
@@ -152,7 +152,7 @@ function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section className="flex items-center justify-center bg-gray-100 py-10 w-full">
+      <section className="flex items-center  justify-center bg-gray-100 py-10 w-full dark:bg-gray-600 ">
         {isLoading ? (
           <div className="text-center text-2xl">Loading...</div>
         ) : isError ? (
@@ -197,13 +197,13 @@ function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-800 p-4 text-white text-center">
+      {/* <footer className="w-full bg-gray-800 p-4 text-white text-center">
         <p>&copy; 2024 CARS4U. All rights reserved.</p>
         <nav className="space-x-4">
           <a href="#privacy" className="hover:underline">Privacy Policy</a>
           <a href="#terms" className="hover:underline">Terms of Service</a>
         </nav>
-      </footer>
+      </footer> */}
     </div>
   );
 }

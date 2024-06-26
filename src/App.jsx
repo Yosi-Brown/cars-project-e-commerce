@@ -44,6 +44,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
 
+        <Route path="/" element={<HomePage />} />
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/allProducts" element={<Products />} />
         <Route path="/cart" element={<Cart />} />
@@ -53,6 +54,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/login" element={<Form />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/payment" element={<Payment />} />
 
