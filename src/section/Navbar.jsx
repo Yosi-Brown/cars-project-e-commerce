@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSunny } from "react-icons/io5";
@@ -23,6 +23,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const menuRef = useRef()
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -40,6 +41,7 @@ function Navbar() {
     const id = e.target.value;
     setCategoryId(id);
     navigate(`/category/${id}`);
+    setDropdownOpen(false)
   };
 
   useEffect(() => {
@@ -54,6 +56,20 @@ function Navbar() {
     setMenuOpen(!menuOpen);
   };
 
+  useEffect(() => {
+    const handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setDropdownOpen(false)
+      }
+    };
+
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener('mousedown', handler)
+    }
+  })
+
   const menuItems = (
     <>
       <li>
@@ -65,7 +81,7 @@ function Navbar() {
           Products
         </Link>
       </li>
-      <li className="relative">
+      <li className="relative" ref={menuRef}>
         <button
           id="dropdownNavbarLink"
           onClick={toggleDropdown}
@@ -86,7 +102,7 @@ function Navbar() {
                 <a
                   href="#"
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => { handleCategoryChange({ target: { value: category._id } }); }}
+                  onClick={() => { handleCategoryChange({ target: { value: category._id } }) }}
                 >
                   {category.name}
                 </a>
@@ -115,7 +131,7 @@ function Navbar() {
           <Link to="/homePage" className="btn btn-ghost text-xl">CARS4U</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu-horizontal px-1">
             {menuItems}
           </ul>
         </div>
@@ -132,7 +148,7 @@ function Navbar() {
           <button className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-white dark:border-gray-500" onClick={toggleDarkMode}>
             {darkMode ? <IoSunny /> : <MdOutlineDarkMode />}
           </button>
-          <button className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500" 
+          <button className="btn btn-sm md:btn-md dark:bg-gray-700 dark:text-gray-100 dark:border-gray-500"
             onClick={isAuth ? logOut : () => navigate('/login')}
           >
             {isAuth ? "Log out" : "Login"}
