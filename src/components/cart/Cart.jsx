@@ -3,6 +3,7 @@ import { BsX } from "react-icons/bs";
 import { CartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../../contexts/AuthContext';
+import { toastFire } from "../../utils/Toaster";
 
 const Cart = ({ setCartOpen }) => {
   const {
@@ -12,24 +13,24 @@ const Cart = ({ setCartOpen }) => {
     removeFromCart,
     clearCart,
   } = useContext(CartContext);
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const closeCart = () => {
-    setCartOpen(false);
+    navigate("/allProducts");
   };
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (cart.length === 0) {
     return (
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10">
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10 pt-16">
         <div className="bg-white w-96 h-auto rounded-xl shadow-xl p-4 overflow-y-auto dark:bg-gray-400">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
             <button
-              onClick={closeCart}
+              onClick={() => navigate("/allProducts")}
               className="btn btn-sm btn-circle btn-outline dark:text-white"
             >
               <BsX />
@@ -53,7 +54,7 @@ const Cart = ({ setCartOpen }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10">
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10 pt-16">
       <div className="bg-white w-96 h-auto max-h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-700 rounded-xl">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
@@ -134,10 +135,9 @@ const Cart = ({ setCartOpen }) => {
               onClick={() => {
                 if (isAuth) {
                   navigate("/order-confirmation");
-                  closeCart();
                 } else {
                   navigate("/login");
-                  closeCart();
+                  toastFire(false, "You must sign up to continue.")
                 }
               }}
             >
