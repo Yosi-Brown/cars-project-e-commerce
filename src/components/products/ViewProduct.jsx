@@ -1,13 +1,20 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { FavoritesContext } from "../../contexts/FavoritesContext";
 
 function ViewProduct({ product, isOpen, onClose }) {
   const [isHovering, setIsHovering] = useState(false);
   const [isOpenPicture, setIsOpenPicture] = useState(false);
   const [isImageScaled, setIsImageScaled] = useState(false);
   const { addToCart } = useContext(CartContext);
+  const { updateFavorites, removeFavorite, favorites  } = useContext(FavoritesContext);
+  
 
   if (!isOpen) return null;
+
+  const isFavorite = (productId) => {
+    return favorites.some(fav => fav._id === productId  );
+  };
 
   const handleOpenPicture = () => {
     setIsOpenPicture(true);
@@ -61,9 +68,17 @@ function ViewProduct({ product, isOpen, onClose }) {
                 </button>
               </div>
               <div className="w-1/2 px-1 md:px-2">
-                <button className="w-full  text-white dark:text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 py-2 px-4 rounded-full font-semibold">
-                  Add to Wishlist
-                </button>
+                {isFavorite(product._id) ? (
+                  <button className="w-full text-white dark:text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 py-2 px-4 rounded-full font-semibold"
+                    onClick={() => removeFavorite(product._id)}>
+                    Remove from Wishlist
+                  </button>
+                ) : (
+                  <button className="w-full text-white dark:text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 py-2 px-4 rounded-full font-semibold"
+                    onClick={() => updateFavorites(product)}>
+                    Add to Wishlist
+                  </button>
+                )}
               </div>
             </div>
           </div>

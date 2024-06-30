@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { CartContext } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from "../../contexts/AuthContext";
 import { toastFire } from "../../utils/Toaster";
-
+import ViewProduct from "../products/ViewProduct";
 const Cart = ({ setCartOpen }) => {
   const {
     cart,
@@ -14,6 +14,13 @@ const Cart = ({ setCartOpen }) => {
     clearCart,
   } = useContext(CartContext);
   const { isAuth } = useContext(AuthContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(null);
+
+  const handleModal = (isOpen, product = null) => {
+    setSingleProduct(product);
+    setIsModalOpen(isOpen);
+  };
 
   const navigate = useNavigate();
 
@@ -28,7 +35,9 @@ const Cart = ({ setCartOpen }) => {
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10 pt-16">
         <div className="bg-white w-96 h-auto rounded-xl shadow-xl p-4 overflow-y-auto dark:bg-gray-400">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
+            <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+              Shopping cart
+            </h2>
             <button
               onClick={() => navigate("/allProducts")}
               className="btn btn-sm btn-circle btn-outline dark:text-white"
@@ -57,7 +66,9 @@ const Cart = ({ setCartOpen }) => {
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity flex justify-center items-center z-10 pt-16">
       <div className="bg-white w-96 h-auto max-h-full shadow-xl p-4 overflow-y-auto dark:bg-gray-700 rounded-xl">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Shopping cart</h2>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+            Shopping cart
+          </h2>
           <button
             onClick={closeCart}
             className="btn btn-sm btn-circle btn-outline dark:text-white"
@@ -69,7 +80,10 @@ const Cart = ({ setCartOpen }) => {
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {cart.map((item) => (
               <li key={item._id} className="flex py-6">
-                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                <div
+                  onClick={() => handleModal(true, item)}
+                  className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 cursor-pointer"
+                >
                   <img
                     src={item.image_link}
                     alt={item.name}
@@ -82,7 +96,16 @@ const Cart = ({ setCartOpen }) => {
                       <h3>
                         {item.company} {item.model}
                       </h3>
-                      <p className="ml-4">${(item.price * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
+                      <p className="ml-4">
+                        $
+                        {(item.price * item.quantity).toLocaleString(
+                          undefined,
+                          {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          }
+                        )}
+                      </p>
                     </div>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
@@ -93,7 +116,9 @@ const Cart = ({ setCartOpen }) => {
                       >
                         -
                       </button>
-                      <p className="text-gray-900 dark:text-white">{item.quantity}</p>
+                      <p className="text-gray-900 dark:text-white">
+                        {item.quantity}
+                      </p>
                       <button
                         onClick={() => increaseQuantity(item._id)}
                         className="btn btn-sm btn-outline ml-2 dark:text-white"
@@ -124,7 +149,13 @@ const Cart = ({ setCartOpen }) => {
         <div className="border-t border-gray-200 px-4 py-6 dark:border-gray-600">
           <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
             <p>Subtotal</p>
-            <p>${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
+            <p>
+              $
+              {total.toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })}
+            </p>
           </div>
           <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-200">
             Shipping and taxes calculated at checkout.
@@ -137,7 +168,7 @@ const Cart = ({ setCartOpen }) => {
                   navigate("/order-confirmation");
                 } else {
                   navigate("/login");
-                  toastFire(false, "You must sign up to continue.")
+                  toastFire(false, "You must sign up to continue.");
                 }
               }}
             >
@@ -157,6 +188,13 @@ const Cart = ({ setCartOpen }) => {
             </p>
           </div>
         </div>
+        {isModalOpen && (
+          <ViewProduct
+            product={singleProduct}
+            isOpen={isModalOpen}
+            onClose={() => handleModal(false)}
+          />
+        )}
       </div>
     </div>
   );

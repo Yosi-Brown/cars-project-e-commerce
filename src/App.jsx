@@ -21,6 +21,8 @@ import ChangePassword from "../src/components/forgatPassword/ChangePassword.jsx"
 import { AuthContext } from "./contexts/AuthContext.jsx";
 import Payment from "./components/payment/Payment.jsx";
 import HomePage from "./components/pages/publicPages/homePage/HomePage.jsx";
+import Favorites from "./components/Favorites/Favorites.jsx";
+import NotFound from "./components/pages/publicPages/NotFound.jsx";
 
 
 
@@ -57,6 +59,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/favorites" element={<Favorites />} />
+         {/* כל נתיב אחר שלא תואם נתיבים קיימים יפנה לעמוד השגיאה */}
+         <Route path="*" element={<NotFound />} />
 
       </Route>
     )

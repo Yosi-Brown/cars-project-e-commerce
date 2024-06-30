@@ -18,6 +18,7 @@ function Profile() {
   const [showChangePassword, setShowChangePassword] = useState(false);
   const { isOrderPage, setIsOrderPage, cart } = useContext(CartContext);
   const navigate = useNavigate();
+  console.log(isOrderPage, "isOrderPage");
 
   const initialValues = {
     firstName: currentUser?.firstName || '',

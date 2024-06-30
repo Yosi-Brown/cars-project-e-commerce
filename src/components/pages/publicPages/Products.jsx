@@ -16,6 +16,7 @@ function Products() {
   const [productPerPage] = useState(9);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
+  // console.log(data.products);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,33 +42,37 @@ function Products() {
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const currentProducts = filteredData?.slice(indexOfFirstProduct, indexOfLastProduct);
-
+// if (isLoading){
+//   return (
+//     <Loading />
+//   )
+// }
   return (
     <>
-      {data && (
-        <>
-          <div className='pt-5 flex items-center justify-center gap-3'>
+          <div className="pt-20 flex items-center justify-center gap-3"> {/* שינינו את ה-padding-top ל-pt-20 */}
             <input
               type="text"
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
-            />
+              />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
-            >
+              >
               <option value="" hidden className="dark:text-gray-300">Sort By</option>
               <option value="default" className="dark:text-gray-300">default</option>
               <option value="company" className="dark:text-gray-300">Company</option>
               <option value="price" className="dark:text-gray-300">Price</option>
             </select>
           </div>
-          {isLoading && <Loading />}
+              {isLoading && <Loading />}
+      {data && (
+        <>
           {isError && <div>{isError}</div>}
-          <AllProducts products={currentProducts} isLoading={isLoading} />
+          <AllProducts products={currentProducts} isLoading={isLoading}  />
           <Pagination
             productPerPage={productPerPage}
             currentPage={currentPage}

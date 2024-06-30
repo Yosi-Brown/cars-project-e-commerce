@@ -11,6 +11,7 @@ function useFetch(url) {
   async function getRequest() {
     try {
       setIsLoading(true)
+      console.log("isLoading",isLoading)
       const { data } = await axios.get(url, {withCredentials: true})
       setData(data)
 
@@ -23,6 +24,7 @@ function useFetch(url) {
   }
   useEffect(() => {
     getRequest();
+    
   }, [sendGetRequest,categoryId])
 
   return [data, isLoading, isError]

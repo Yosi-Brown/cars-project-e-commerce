@@ -6,7 +6,6 @@ const OrderConfirmation = () => {
   const { cart, increaseQuantity, decreaseQuantity, isOrderPage, setIsOrderPage } = useContext(CartContext);
   const navigate = useNavigate();
   
-
   const [localCart, setLocalCart] = useState(cart);
 
   const total = localCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -39,7 +38,7 @@ const OrderConfirmation = () => {
   };
 
   return (
-    <div className="mt-8 max-w-2xl mx-auto p-4 bg-white  shadow-md rounded-lg border-4 border-blue-500 dark:bg-slate-400 ">
+    <div className="mt-24 max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg border-4 border-blue-500 dark:bg-slate-400">
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900">
         Order Confirmation
       </h2>
@@ -83,7 +82,7 @@ const OrderConfirmation = () => {
         ))}
       </ul>
       <div className="border-t border-gray-200 mt-6 pt-4">
-        <div className="flex justify-between text-xl font-semibold text-gray-900 ">
+        <div className="flex justify-between text-xl font-semibold text-gray-900">
           <p>Total :</p>
           <p>${total.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</p>
         </div>
