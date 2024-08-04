@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import axios from "axios"
+
 
 const url = import.meta.env.VITE_URL
 
@@ -14,6 +14,7 @@ function GlobalProvider({ children }) {
 
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
+    // console.log(JSON.parse(savedUser));
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }

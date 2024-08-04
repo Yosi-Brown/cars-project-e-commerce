@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import Loading from '../../loading/Loading';
 import Pagination from '../../common/Pagination';
 import AllProducts from '../../products/AllProducts';
 import { useParams } from 'react-router-dom';
 
-
 const url = import.meta.env.VITE_URL;
 
 function Products() {
-  const { categoryId } = useParams()
-  // console.log('products',categoryId);
-  const category = categoryId
-  const urlSpecific = category ? `${url}/categories/getByCategory/${category}` : `${url}/products/getall`
+  const { categoryId } = useParams();
+  const category = categoryId;
+  const urlSpecific = category ? `${url}/categories/getByCategory/${category}` : `${url}/products/getall`;
   const [data, isLoading, isError] = useFetch(urlSpecific);
-  console.log(urlSpecific);
-  // const [data, isLoading, isError] = useFetch(`${url}/products/getall`);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage] = useState(8);
+  const [productPerPage] = useState(9);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
-  // console.log(data)
 
-  // useEffect(()=>{
-
-  // },[categoryId])
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
   let filteredData = data?.products.filter((product) =>
     product.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -41,7 +35,7 @@ function Products() {
   } else if (sortBy === "price") {
     filteredData.sort((a, b) => a.price - b.price);
   } else if (sortBy === "default") {
-    filteredData = filteredData
+    filteredData = filteredData;
   }
 
   const indexOfLastProduct = currentPage * productPerPage;
@@ -50,26 +44,27 @@ function Products() {
 
   return (
     <>
-
       {data && (
         <>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
-          />
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
-          >
-            <option value="" className="dark:text-gray-300">Sort By</option>
-            <option value="default" className="dark:text-gray-500">default</option>
-            <option value="company" className="dark:text-gray-500">Company</option>
-            <option value="price" className="dark:text-gray-500">Price</option>
-          </select>
+          <div className='pt-5 flex items-center justify-center gap-3'>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
+            />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="mb-4 p-2 border border-gray-300 rounded dark:text-gray-300 dark:bg-gray-700"
+            >
+              <option value="" hidden className="dark:text-gray-300">Sort By</option>
+              <option value="default" className="dark:text-gray-300">default</option>
+              <option value="company" className="dark:text-gray-300">Company</option>
+              <option value="price" className="dark:text-gray-300">Price</option>
+            </select>
+          </div>
           {isLoading && <Loading />}
           {isError && <div>{isError}</div>}
           <AllProducts products={currentProducts} isLoading={isLoading} />

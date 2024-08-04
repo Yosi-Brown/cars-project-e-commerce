@@ -25,7 +25,7 @@ function Pagination({
   };
 
   return (
-    <div className="mt-5 left-0 right-0 flex justify-center items-center dark:text-white">
+    <div className="mt-5 left-0 right-0 pb-4 flex flex-col items-center dark:text-white max-w-[60vw] mx-auto">
       <ul className="inline-flex -space-x-px text-base h-10">
         <li>
           <button
@@ -37,9 +37,9 @@ function Pagination({
           </button>
         </li>
         {pageNumbers.map((number) => (
-          <li key={number}>
+          <li key={number} className="hidden sm:block">
             <button
-              className={`flex items-center justify-center px-4 h-10 leading-tight ${currentPage === number ? "text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white" : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"}`}
+              className={`flex items-center justify-center px-4 h-10 leading-tight ${currentPage === number ? "text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-900 dark:bg-gray-900 dark:text-white" : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"}`}
               onClick={() => setCurrentPage(number)}
             >
               {number}
@@ -56,6 +56,9 @@ function Pagination({
           </button>
         </li>
       </ul>
+      <div className="mt-2 text-gray-500 dark:text-gray-400 block sm:hidden">
+        Page {currentPage} of {pageNumbers.length}
+      </div>
     </div>
   );
 }
